@@ -49,6 +49,16 @@ describe('PinyinEngine()', () => {
             assert.notDeepEqual(['中央美院'], pinyinEngine.query('meiyuan'));
             assert.deepEqual(['中央美院'], pinyinEngine.query('zy'));
         });
+        it('支持英文大写搜索', () => {
+            const pinyinEngine = new PinyinEngine([
+                'Neil',
+                'neil',
+                'Leo',
+                '中央美院'
+            ], '', true);
+            assert.deepEqual(['Neil', 'neil'], pinyinEngine.query('ne'));
+            assert.deepEqual(['Leo'], pinyinEngine.query('leo'));
+        })
     });
 
     describe('PinyinEngine.participle()', () => {
